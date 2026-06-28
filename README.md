@@ -4,6 +4,7 @@ Chrome/Brave extension for easily adding #SaveStargate and other presets to twee
 
 ## 📋 What It Does
 
+- ✅ Add new Button next to post button which will open menu
 - ✅ Create and manage custom text presets (#hashtags, phrases, etc.)
 - ✅ One click inserts a preset into the tweet compose box
 - ✅ All presets are saved automatically
@@ -28,30 +29,8 @@ SaveStargate/
 └── README.md
 ```
 
-### Step 2: Create Icons
 
-You can easily create them:
-
-**Option A: Online** (fastest)
-1. Go to https://www.favicon-generator.org/
-2. Generate icons in RGB: `#667eea` (our color)
-3. Download the PNG versions
-4. Place them in the `images/` folder with the names: `icon16.png`, `icon48.png`, `icon128.png`
-
-**Option B: Using ImageMagick** (if installed)
-```bash
-convert -size 128x128 xc:'#667eea' -pointsize 80 -gravity center -fill white -annotate +0+0 '🚀' icon128.png
-convert -size 48x48 xc:'#667eea' -pointsize 30 -gravity center -fill white -annotate +0+0 '🚀' icon48.png
-convert -size 16x16 xc:'#667eea' -pointsize 10 -gravity center -fill white -annotate +0+0 '🚀' icon16.png
-```
-
-**Option C: Just copy the same image**
-I created icon.png, just copy it to all three names:
-```bash
-cp icon.png icon16.png && cp icon.png icon48.png && cp icon.png icon128.png
-```
-
-### Step 3: Install in Chrome
+### Step 2: Install in Chrome
 
 1. Open Chrome/Brave
 2. Go to `chrome://extensions/` (or `brave://extensions/`)
