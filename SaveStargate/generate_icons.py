@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-Vygeneruj ikony pro SaveStargate rozšíření
-Spustit: python3 generate_icons.py
+Generate icons for the SaveStargate extension
+Run: python3 generate_icons.py
 """
 
 import os
 from pathlib import Path
 
-# Vytvoř images složku pokud neexistuje
+# Create images folder if it doesn't exist
 images_dir = Path(__file__).parent / "images"
 images_dir.mkdir(exist_ok=True)
 
-# SVG template pro ikonu
+# SVG template for the icon
 svg_template = '''<?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 {size} {size}" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pozadí -->
+  <!-- Background -->
   <rect width="{size}" height="{size}" fill="#667eea" rx="{radius}"/>
   
   <!-- Emoji/text -->
@@ -24,7 +24,7 @@ svg_template = '''<?xml version="1.0" encoding="UTF-8"?>
 sizes = [16, 48, 128]
 
 for size in sizes:
-    radius = max(2, size // 8)  # Radius pro zaoblené rohy
+    radius = max(2, size // 8)  # Radius for rounded corners
     font_size = int(size * 0.7)
     text_y = size // 2 + size // 10
     size_half = size // 2
@@ -39,8 +39,8 @@ for size in sizes:
     
     filename = images_dir / f"icon{size}.png"
     
-    # Zkusíme uložit SVG (proto si je user pak musí sám konvertovat)
-    # Nebo uložíme SVG a řekneme aby si je konvertoval
+    # Try to save SVG (but user will have to convert it themselves)
+    # Or save SVG and tell user to convert it
     svg_filename = images_dir / f"icon{size}.svg"
     
     with open(svg_filename, 'w', encoding='utf-8') as f:
@@ -48,33 +48,33 @@ for size in sizes:
     
     print(f"✓ Vytvořen: {svg_filename}")
 
-print("\n✅ SVG ikony vytvořeny!")
-print("\n📝 Dalekšího postupu:")
-print("1. Jdi na https://cloudconvert.com/svg-to-png")
-print("2. Uploaduj icon16.svg, icon48.svg a icon128.svg")
-print("3. Stáhni PNG verze")
-print("4. Umísti je do images/ složky (bude tam už SVG verze)")
-print("\nNebo si je skopíruj do online konvertoru a máš hotovo! 🎉")
+print("\n✅ SVG icons created!")
+print("\n📝 Next steps:")
+print("1. Go to https://cloudconvert.com/svg-to-png")
+print("2. Upload icon16.svg, icon48.svg and icon128.svg")
+print("3. Download the PNG versions")
+print("4. Place them in the images/ folder (the SVG versions will be there too)")
+print("\nOr copy them to an online converter and you're done! 🎉")
 
-# Alternativa: zkus PIL pokud je nainstalován
+# Alternative: try PIL if it's installed
 try:
     from PIL import Image, ImageDraw, ImageFont
     
-    print("\n🎨 PIL je nainstalován! Generuji PNG přímo...")
+    print("\n🎨 PIL is installed! Generating PNGs directly...")
     
     for size in sizes:
-        # Vytvoř obrázek
+        # Create image
         img = Image.new('RGB', (size, size), color='#667eea')
         draw = ImageDraw.Draw(img)
         
-        # Přidej emoji/text
-        # (Font je kvůli emoji trošku trickier, tak to zjednodušíme)
+        # Add emoji/text
+        # (Font is tricky due to emoji, so we simplify)
         try:
             font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", int(size * 0.6))
         except:
             font = ImageFont.load_default()
         
-        # Rozměry pro centrování
+        # Measurement for centering
         text = "🚀"
         bbox = draw.textbbox((0, 0), text, font=font)
         text_width = bbox[2] - bbox[0]
@@ -84,14 +84,14 @@ try:
         
         draw.text((x, y), text, fill='white', font=font)
         
-        # Ulož PNG
+        # Save PNG
         png_filename = f"images/icon{size}.png"
         img.save(png_filename)
-        print(f"✓ Uložen: {png_filename}")
+        print(f"✓ Saved: {png_filename}")
     
-    print("\n✅ Všechny PNG ikony vytvořeny! Můžeš rozšíření instalovat. 🚀")
+    print("\n✅ All PNG icons created! You can now install the extension. 🚀")
 
 except ImportError:
-    print("\n⚠️  PIL není nainstalován.")
-    print("Instaluj: pip install Pillow")
-    print("Nebo skonči s SVG verzí a sám si je konvertuj.")
+    print("\n⚠️  PIL isn't installed.")
+    print("Install it: pip install Pillow")
+    print("Or finish with the SVG version and convert it yourself.")

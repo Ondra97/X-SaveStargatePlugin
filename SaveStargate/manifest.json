@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "SaveStargate Tweet Helper",
   "version": "1.0",
-  "description": "Automaticky přidávej #SaveStargate a další presety do tweetů",
+  "description": "Automatically add #SaveStargate and other presets to tweets",
   "permissions": [
     "storage",
     "activeTab",

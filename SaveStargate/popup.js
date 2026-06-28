@@ -14,17 +14,17 @@ function savePresets(presets, cb) {
 function renderPresets() {
   loadPresets((presets) => {
     if (presets.length === 0) {
-      presetsList.innerHTML = '<p class="empty-state">Zatím žádné presety. Přidej si nějaké!</p>';
+      presetsList.innerHTML = '<p class="empty-state">No presets yet. Add some!</p>';
       return;
     }
 
     presetsList.innerHTML = presets.map((preset, i) => `
       <div class="preset-item" draggable="true" data-index="${i}">
-        <span class="drag-handle" title="Přetáhni pro změnu pořadí">⠿</span>
+        <span class="drag-handle" title="Drag to change order">⠿</span>
         <span class="preset-text">${escapeHtml(preset)}</span>
         <div class="preset-actions">
-          <button class="btn-copy"   data-index="${i}" title="Zkopírovat">📋</button>
-          <button class="btn-delete" data-index="${i}" title="Smazat">🗑️</button>
+          <button class="btn-copy"   data-index="${i}" title="Copy">📋</button>
+          <button class="btn-delete" data-index="${i}" title="Delete">🗑️</button>
         </div>
       </div>
     `).join('');
@@ -40,7 +40,7 @@ function attachItemListeners(presets) {
     btn.addEventListener('click', e => {
       e.stopPropagation();
       navigator.clipboard.writeText(presets[btn.dataset.index]);
-      showToast('Zkopírováno! 📋');
+      showToast('Copied! 📋');
     });
   });
 
@@ -50,7 +50,7 @@ function attachItemListeners(presets) {
       e.stopPropagation();
       loadPresets(current => {
         current.splice(Number(btn.dataset.index), 1);
-        savePresets(current, () => { renderPresets(); showToast('Preset odstraněn ✓'); });
+        savePresets(current, () => { renderPresets(); showToast('Preset deleted ✓'); });
       });
     });
   });
@@ -93,7 +93,7 @@ function attachItemListeners(presets) {
       loadPresets(current => {
         const [moved] = current.splice(fromIdx, 1);
         current.splice(toIdx, 0, moved);
-        savePresets(current, () => { renderPresets(); showToast('Pořadí uloženo ✓'); });
+        savePresets(current, () => { renderPresets(); showToast('Order saved ✓'); });
       });
     });
   });
@@ -102,10 +102,10 @@ function attachItemListeners(presets) {
 // ── Add preset ─────────────────────────────────────────────────────────────
 function addPreset() {
   const value = presetInput.value.trim();
-  if (!value) { showToast('Zadej nějaký text! 👆'); presetInput.focus(); return; }
+  if (!value) { showToast('Enter some text! 👆'); presetInput.focus(); return; }
 
   loadPresets(presets => {
-    if (presets.includes(value)) { showToast('Preset už existuje! ⚠️'); return; }
+    if (presets.includes(value)) { showToast('Preset already exists! ⚠️'); return; }
     presets.push(value);
     savePresets(presets, () => { presetInput.value = ''; renderPresets(); showToast('Přidáno! 🎉'); });
   });
