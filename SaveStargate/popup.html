@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaveStargate Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 SaveStargate</h1>
+      <p>Správa presetů pro tweety</p>
+    </div>
+
+    <div class="input-section">
+      <input 
+        type="text" 
+        id="presetInput" 
+        placeholder="Zadej text nebo #hashtag..."
+        maxlength="280"
+      >
+      <button id="addBtn" class="btn btn-primary">Přidat preset</button>
+    </div>
+
+    <div class="presets-section">
+      <h2>Tvoje presety:</h2>
+      <div id="presetsList" class="presets-list">
+        <p class="empty-state">Zatím žádné presety. Přidej si nějaké!</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <small>💡 Tip: Presety se automaticky ukládají do localStorage</small>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
