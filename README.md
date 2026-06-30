@@ -1,6 +1,7 @@
 # 🚀 SaveStargate Tweet Helper
 
-Chrome/Brave extension for easily adding #SaveStargate and other presets to tweets.
+Chrome/Brave/Microsoft Ede,Opera extension for easily adding #SaveStargate and other presets to tweets.
+- Tested only on Brave
 
 ## 📋 What It Does
 
