@@ -221,7 +221,7 @@ function closeMenu() {
 }
 
 function insertToTweet(textBox, presets) {
-  const text = '\n\n' + presets.join('\n');
+  const text = '\n' + presets.join('\n');
 
   const liveBox = document.querySelector('[contenteditable="true"][role="textbox"]') || textBox;
   liveBox.focus();
