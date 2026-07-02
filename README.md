@@ -1,4 +1,5 @@
 # 🚀 SaveStargate Tweet Helper
+this plugin was build with Claude AI
 
 Chrome/ Brave/ Microsoft Edge/ Opera
 
